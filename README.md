@@ -1,7 +1,5 @@
 # Unsupervised learning in unusual-aim detection in CS2 
-Unsupervised anomaly detection used to spot unusual aim without labelled data.
-
-This is not an anti-cheat, and it makes no claim to match or beat Valve's VACnet. An anomaly score means "unusual in this dataset", never "cheating". No player is named, and player IDs are salted hashes.
+Unsupervised anomaly detection used to spot unusual aim in Valve's CS2 without labelled data. 
 
 ## How it works
 
@@ -21,12 +19,10 @@ flowchart LR
 
 ## Data
 
-There are 21 demos with 2,912 kills, of which 2,388 remain after cleaning:
+There are 21 demos (not included in repo) with 2,912 kills, of which 2,388 remain after cleaning:
 
-- 12 of the author's own matchmaking demos
+- 12 of my own matchmaking demos
 - 9 public HLTV demos from 4 pro series
-
-Demos and per-kill outputs are not included in this repository. See [Privacy](#privacy).
 
 ## Results
 
@@ -63,8 +59,6 @@ The table shows held-out results for a full-strength cheat without jitter. AUC 0
 - **The sample is small.** It covers 16 independent matches. The pro demos have ping 0, and measured aim error rises with ping, so own-vs-pro comparisons are confounded.
 - **Crouching is not modelled.** Eye height is fixed at 64 units.
 
-[REVIEW.md](REVIEW.md) covers the method, the controls and the confounds in detail.
-
 ## Run it
 
 Tested with Python 3.14, demoparser2 0.42, numpy 2.5, pandas 3.0, scikit-learn 1.9 and matplotlib 3.11.
@@ -79,9 +73,3 @@ python synthetic_eval.py          # synthetic_results*.csv, synthetic_detection*
 python synthetic_eval.py --fast   # quicker, fewer bootstrap repeats
 python testfeatures.py            # synthetic tests, no demos needed, exits 1 on failure
 ```
-
-## Privacy
-
-- **SteamIDs are hashed with a private random salt.** It is stored in `.hash_salt`, which is created on first run. Never commit it.
-- **`kill_features.csv`, `anomalies.csv` and `windows.pkl` stay local.** Each row carries a demo name and tick, which identifies the player to anyone with the same demo.
-- **Only aggregate results are published here.**
