@@ -45,6 +45,7 @@ The table shows held-out results for a full-strength cheat without jitter. AUC 0
 
 ![Detection vs strength, realistic target](synthetic_detection_realistic.png)
 ![Detection vs strength, ideal target, with sham control](synthetic_detection.png)
+![Detection vs number of training matches](scarcity.png)
 
 ## How the evaluation avoids fooling itself
 
