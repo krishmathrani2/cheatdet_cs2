@@ -16,6 +16,9 @@ flowchart LR
 1. **Extract.** For every kill, `features.py` finds the first shot of the burst that killed the victim. It measures the attacker's aim in the second before that shot: turn speed and acceleration, aim error in degrees and game units, time spent on target, and victim movement.
 2. **Detect.** `analysis.py` drops kills where aim is not the story: non-guns, wallbangs, smoke, blind, point-blank and stationary victims. It then fits one Isolation Forest per weapon class.
 3. **Evaluate.** There are no labels, so `synthetic_eval.py` edits real view-angle traces to simulate aim assist at strengths 0 to 1. It tests three cheats: snap, smooth and magnetism. A detector trained only on real kills then tries to flag the edited kills. Whole matches are held out, and intervals come from resampling whole matches.
+4. 
+![Real aim vs simulated cheats](trace_example.png)
+
 
 ## Data
 
